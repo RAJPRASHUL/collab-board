@@ -1,0 +1,459 @@
+
+body {
+  background-color: var(--bg);
+  color: var(--dark);
+  font-family: "Press Start 2P", monospace;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.whiteboard-container {
+  padding: 0px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.canvas-container {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  background-color: var(--bg);
+ 
+  margin: 2px auto;
+  position: relative;
+}
+
+.canvas-container::before {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border: 2px solid var(--accent1);
+  pointer-events: none;
+}
+
+/* Toolbar Styling - ShareRoom Style */
+.toolbar {
+  background: #000411;
+  border: 2px solid rgb(255, 255, 255);
+  border-radius: 0;
+  padding: 15px;
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  box-shadow: 0 0 15px cyan, inset 0 0 10px rgba(0, 255, 255, 0.5);
+  color: white;
+  font-family: "Press Start 2P", monospace;
+  letter-spacing: 1px;
+}
+
+/* Tool icons and controls - ShareRoom Style */
+.toolbar button,
+.toolbar select,
+.toolbar input {
+  background: #001101;
+  color: white;
+  border: 3px solid cyan;
+  padding: 8px;
+  min-width: 40px;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: "Press Start 2P", monospace;
+  font-size: 12px;
+}
+
+.toolbar button:hover {
+  background: rgb(255, 0, 0);
+  box-shadow: 0 0 5px cyan;
+}
+
+/* Button Styling */
+.tool-btn {
+  background: var(--bg);
+  color: var(--dark);
+  border: 3px solid var(--dark);
+  padding: 8px 16px;
+  font-family: "Press Start 2P", monospace;
+  font-size: 12px;
+  text-transform: uppercase;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s;
+  image-rendering: pixelated;
+  outline: 1px solid var(--gray-medium);
+  outline-offset: -2px;
+}
+
+.tool-btn:hover {
+  background: var(--gray-light);
+}
+
+.tool-btn.active {
+  background: var(--dark);
+  color: var(--bg);
+}
+
+.tool-btn svg {
+  fill: var(--light);
+  stroke: var(--light);
+  width: 24px;
+  height: 24px;
+}
+
+.tool-btn:hover {
+  background: var(--accent1);
+}
+
+.tool-btn.active {
+  background: var(--accent2);
+  border-color: var(--light);
+}
+
+/* Shape buttons styling */
+.shape-btn svg {
+  fill: var(--light);
+  stroke: var(--light);
+  width: 20px;
+  height: 20px;
+}
+
+.tool-btn::after {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: 3px;
+  right: -3px;
+  bottom: -3px;
+  background: var(--accent1);
+  z-index: -1;
+}
+
+.tool-btn:hover {
+  transform: translate(-2px, -2px);
+}
+
+.tool-btn.active {
+  background: var(--accent2);
+  color: var(--dark);
+}
+
+/* Color Picker and Width Slider - ShareRoom Style */
+.color-picker {
+  border: 2px solid cyan;
+  width: 40px;
+  height: 40px;
+  padding: 2px;
+  background: #000011;
+  cursor: pointer;
+}
+
+.width-slider {
+  -webkit-appearance: none;
+  height: 20px;
+  background: #000011;
+  border: 2px solid cyan;
+  cursor: pointer;
+}
+
+.width-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  background: cyan;
+  border: 2px solid #000011;
+  cursor: pointer;
+}
+
+/* Toolbar Labels and Text - ShareRoom Style */
+.toolbar .label,
+.toolbar .room-tag,
+.toolbar .value,
+.toolbar span {
+  color: white;
+  font-family: "Press Start 2P", monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+.toolbar .tool-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.toolbar .range {
+  background: #000011;
+  border: 1px solid cyan;
+  color: white;
+}
+
+/* Room Info */
+.header-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  width: 100%;
+  gap: 20px;
+}
+
+.room-info {
+  background: var(--bg);
+  border: 2px solid var(--dark);
+  padding: 10px;
+  width: auto;
+  font-family: "Press Start 2P", monospace;
+  font-size: 12px;
+  text-align: left;
+  display: inline-block;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 0;
+}
+
+.retro-app {
+  padding: 0;
+}
+
+.share-title {
+  margin: 0 0 8px 0;
+}
+
+.share-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+
+.share-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.share-link {
+  background: #ff69b4; /* Hot pink background */
+  color: var(--bg); /* White text */
+  border: 2px solid var(--dark);
+  padding: 5px 10px;
+  font-family: "Press Start 2P", monospace;
+  font-size: 10px;
+  width: 280px;
+  outline: none;
+}
+
+.share-title {
+  margin: 0 0 8px 0;
+  font-size: 10px;
+  color: var(--dark);
+}
+
+/* Style the copy button */
+.tool-btn {
+  border: 2px solid var(--dark);
+  background: var(--bg);
+  color: var(--dark);
+  padding: 5px 10px;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.tool-btn:hover {
+  background: var(--gray-light);
+}
+
+.share-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: static;
+  margin: 8px 0 0 0;
+}
+
+.share-title {
+  position: static;
+  display: block;
+  margin: 0;
+  padding: 0;
+  line-height: 1.2;
+}
+
+.room-info::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  right: -4px;
+  bottom: -4px;
+  border: 2px solid var(--accent1);
+  z-index: -1;
+}
+
+.share-link {
+  background: var(--primary);
+  color: var(--light);
+  padding: 10px;
+  border: none;
+  font-family: "Courier New", monospace;
+  width: 100%;
+  max-width: 300px;
+  text-align: center;
+  margin: 10px 0;
+}
+
+/* Shape Buttons */
+.shape-buttons {
+  display: flex;
+  gap: 10px;
+  margin: 10px 0;
+  justify-content: center;
+}
+
+.shape-btn {
+  width: 40px;
+  height: 40px;
+  background: var(--dark);
+  border: 2px solid var(--primary);
+  color: var(--light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.shape-btn:hover {
+  background: var(--primary);
+  transform: scale(1.1);
+}
+
+/* Whiteboard Canvas Background Styling */
+.whiteboard-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  /* Beautiful gradient background */
+  background: radial-gradient(
+    ellipse at center,
+    rgba(68, 255, 221, 0.1) 0%,
+    rgba(255, 68, 170, 0.05) 30%,
+    rgba(255, 215, 0, 0.03) 60%,
+    rgba(255, 255, 255, 0.95) 100%
+  );
+  /* Alternative: Grid pattern overlay */
+  background-image: linear-gradient(
+      rgba(68, 255, 221, 0.1) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(68, 255, 221, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+  /* Subtle animation */
+  animation: backgroundShift 20s ease-in-out infinite;
+}
+
+.canvas-frame {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  /* Subtle shadow for depth */
+  box-shadow: 0 0 20px rgba(68, 255, 221, 0.2),
+    inset 0 0 20px rgba(255, 255, 255, 0.1);
+  /* Retro border effect */
+  border: 2px solid rgba(68, 255, 221, 0.3);
+}
+
+.canvas-frame::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(
+    45deg,
+    var(--secondary),
+    var(--primary),
+    var(--accent1),
+    var(--accent2)
+  );
+  z-index: -1;
+  border-radius: 10px;
+  opacity: 0.6;
+}
+
+.whiteboard-canvas {
+  position: relative;
+  z-index: 1;
+  border-radius: 6px;
+  /* Keep canvas background white for drawing */
+  background: white !important;
+}
+
+/* Subtle background animation */
+@keyframes backgroundShift {
+  0%,
+  100% {
+    background-position: 0% 0%;
+  }
+  25% {
+    background-position: 100% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  75% {
+    background-position: 0% 100%;
+  }
+}
+
+/* Status Indicator */
+.status-indicator {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 2px solid var(--light);
+}
+
+.status-indicator.connected {
+  background-color: #00ff00;
+  box-shadow: 0 0 10px #00ff00;
+}
+
+.status-indicator.disconnected {
+  background-color: #ff0000;
+  box-shadow: 0 0 10px #ff0000;
+}
+/* Add this to your client/src/Whiteboard.css file */
+
+.whiteboard-wrap {
+  display: flex;
+  flex-direction: column;
+  /* Make the wrapper take up the full browser window height, minus some padding */
+  height: 100vh;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.canvas-frame {
+  /* This is the magic property: it tells the frame to grow and fill all available vertical space */
+  flex-grow: 1;
+  border: 2px solid #333; /* Optional: adds a border so you can see the frame */
+  position: relative;
+}
+
+/* This is the div your ref is attached to. It needs to fill its parent, the .canvas-frame */
+.canvas-container {
+  width: 100%;
+  height: 100%;
+}

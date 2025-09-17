@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "fabric-js": "^0.0.2-security"
+  }
+}

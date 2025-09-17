@@ -1,0 +1,59 @@
+.tool-icon {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  margin: 0 auto;
+}
+
+/* Pen tool icon */
+.pen-icon {
+  fill: none;
+  stroke: var(--light);
+  stroke-width: 2;
+}
+
+/* Eraser tool icon */
+.eraser-icon {
+  fill: var(--light);
+  stroke: var(--light);
+  stroke-width: 1;
+}
+
+/* Select tool icon */
+.select-icon {
+  fill: none;
+  stroke: var(--light);
+  stroke-width: 2;
+}
+
+/* Shape icons */
+.shape-icon {
+  fill: none;
+  stroke: var(--light);
+  stroke-width: 2;
+}
+
+/* Active tool highlighting */
+.tool-btn.active .tool-icon {
+  stroke: var(--accent2);
+  fill: var(--accent2);
+}
+
+/* Color picker styling */
+.color-picker {
+  width: 40px;
+  height: 40px;
+  padding: 2px;
+  border: 2px solid var(--accent1);
+  cursor: pointer;
+  background: transparent;
+}
+
+.color-picker::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.color-picker::-webkit-color-swatch {
+  border: none;
+  border-radius: 0;
+}
