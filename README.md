@@ -3,6 +3,7 @@
 A real-time collaborative whiteboard application built with React and FastAPI, allowing multiple users to draw and interact on a shared canvas simultaneously.
 
 ![Whiteboard Application Screenshot](docs/image.png)
+![Whiteboard Application New Screenshot](docs/new.png)
 
 The application features a modern, retro-styled interface with:
 - Room sharing functionality
